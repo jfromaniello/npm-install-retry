@@ -1,0 +1,27 @@
+{
+  "name": "npm-install-retry",
+  "description": "retry npm install when it fails",
+  "version": "0.0.0",
+  "repository": {
+    "url": "git://github.com/jfromaniello/npm-install-retry.git"
+  },
+  "author": {
+    "name": "José F. Romaniello",
+    "email": "jfromaniello@gmail.com",
+    "url": "http://joseoncode.com"
+  },
+  "bin": {
+    "npm-install-retry" : "./bin/npm-install-retry"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "commander": "~1.2.0",
+    "colors": "~0.6.0-1"
+  },
+  "devDependencies": {
+    "mocha": "~1.11.0",
+    "chai": "~1.7.0"
+  }
+}
