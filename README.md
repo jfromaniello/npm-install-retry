@@ -1,10 +1,10 @@
 Command line utility that retries  `npm install` when NPM fails with `npm ERR! cb() never called`.
 
-This happens exporadically and has been reported many times:
+This happens sporadically and has been reported many times:
 
-https://github.com/meteor/meteor/issues/1190
-https://github.com/isaacs/npm/issues/2907
-https://github.com/isaacs/npm/issues/3269
+-  https://github.com/meteor/meteor/issues/1190
+-  https://github.com/isaacs/npm/issues/2907
+-  https://github.com/isaacs/npm/issues/3269
 
 and still fails.
 
