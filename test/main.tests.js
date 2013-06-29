@@ -28,4 +28,12 @@ describe('npm-install-retry', function () {
     });
   });
 
+  it('should have npm_config_color false', function (done) {
+    npm_install_retry('echo $npm_config_color', '', { wait: 0, attempts: 10 }, function (err, result) {
+      if (err) return done(err);
+      expect(result.stdout.split('\n')[0]).to.eql('0');
+      done();
+    });
+  });
+
 });
