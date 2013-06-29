@@ -1,7 +1,7 @@
 {
   "name": "npm-install-retry",
   "description": "retry npm install when it fails",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "git://github.com/jfromaniello/npm-install-retry.git"
   },
