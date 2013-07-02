@@ -7,7 +7,7 @@ var npmargs   = process.argv.indexOf('--') === -1 ? '' : process.argv.slice(proc
 var retryargs = process.argv.indexOf('--') === -1 ? process.argv : process.argv.slice(0, process.argv.indexOf('--'));
 
 program
-  .version(require(__dirname + '/../package.json'))
+  .version(require(__dirname + '/../package.json').version)
   .option('-a, --attempts [10]', 'Number of attempts before fail [10]', 10)
   .option('-w, --wait [500]', 'Milliseconds to wait between tries [10]', 10)
   .parse(retryargs);
