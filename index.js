@@ -17,7 +17,7 @@ module.exports = function (command, args, options, callback) {
         times++;
         return setTimeout(run, options.wait);
       }
-      return callback(null, {times: times, stdout: stdout});
+      return callback(null, {times: times, stdout: stdout, exitCode: (err && err.code) || 0});
     });
     
     attempt.stdout.pipe(process.stdout);
