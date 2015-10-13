@@ -4,7 +4,7 @@ var exec    = require('child_process').exec;
 module.exports = function (command, args, options, callback) {
   var times = 1;
   function run () {
-    var runCmd = command + ' ' + args;
+    var runCmd = command + ' ' + args.join(' ');
     console.log(('attempt ' + times).bold.green + ': ' + runCmd);
 
     process.env.npm_config_color = 0;
