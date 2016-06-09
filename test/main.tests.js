@@ -2,11 +2,13 @@ var npm_install_retry = require('../');
 var expect            = require('chai').expect;
 
 function Fail3TimesCommand() { this.times = 0; }
+var isWin = /^win/.test(process.platform);
+var cbErrorCommand = isWin ? 'echo npm ERR! cb() never called! 1>&2' : 'echo npm ERR\\! cb\\(\\) never called\\! 1>&2';
 
 Fail3TimesCommand.prototype.toString = function() {
   if(this.times < 3) {
     this.times++;
-    return 'echo npm ERR\\! cb\\(\\) never called\\! 1>&2';
+    return cbErrorCommand;
   }
   return 'echo peace and love';
 };
@@ -22,16 +24,18 @@ describe('npm-install-retry', function () {
   });
 
   it('should fail if it fail all attempts', function (done) {
-    npm_install_retry('echo npm ERR\\! cb\\(\\) never called\\! 1>&2', '', { wait: 0, attempts: 10 }, function (err, result) {
+    npm_install_retry(cbErrorCommand, '', { wait: 0, attempts: 10 }, function (err, result) {
       expect(err.message).to.eql('too many attempts');
       done();
     });
   });
 
   it('should have npm_config_color false', function (done) {
-    npm_install_retry('echo $npm_config_color', '', { wait: 0, attempts: 10 }, function (err, result) {
+    var endOfLine = require('os').EOL;
+    var command = isWin ? 'echo %npm_config_color%' : 'echo $npm_config_color';
+    npm_install_retry(command, '', { wait: 0, attempts: 10 }, function (err, result) {
       if (err) return done(err);
-      expect(result.stdout.split('\n')[0]).to.eql('0');
+      expect(result.stdout.split(endOfLine)[0].trim()).to.eql('0');
       done();
     });
   });
