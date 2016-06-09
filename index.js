@@ -10,7 +10,10 @@ module.exports = function (command, args, options, callback) {
     process.env.npm_config_color = 0;
 
     var attempt = exec(runCmd, function (err, stdout, stderr) {
-      if (stdout.match(/npm ERR\! cb\(\) never called\!/ig) || stderr.match(/npm ERR\! cb\(\) never called\!/ig)) {
+      if (
+          stdout.match(/npm ERR\! cb\(\) never called\!/ig) || stderr.match(/npm ERR\! cb\(\) never called\!/ig) ||
+          stdout.match(/npm ERR\! errno ECONNRESET/ig) || stderr.match(/npm ERR\! errno ECONNRESET/ig)
+      ) {
         if (times >= options.attempts) {
           return callback(new Error('too many attempts'));
         }
