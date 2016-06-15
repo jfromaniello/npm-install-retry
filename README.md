@@ -1,4 +1,5 @@
-![Travis CI](https://travis-ci.org/szarouski/npm-install-retry.svg?branch=feature%2Fsupport-for-connection-reset-errors)
+[![Build Status](https://travis-ci.org/jfromaniello/npm-install-retry.svg?branch=master)](https://travis-ci.org/jfromaniello/npm-install-retry)
+
 ![Build status](https://ci.appveyor.com/api/projects/status/sc7937we6gb0mwoc?svg=true)
 
 Command line utility that retries  `npm install` when NPM fails with `npm ERR! cb() never called` or `npm ERR! errno ECONNRESET`.
