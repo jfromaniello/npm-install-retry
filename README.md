@@ -1,10 +1,14 @@
-Command line utility that retries  `npm install` when NPM fails with `npm ERR! cb() never called`.
+![Travis CI](https://travis-ci.org/szarouski/npm-install-retry.svg?branch=feature%2Fsupport-for-connection-reset-errors)
+![Build status](https://ci.appveyor.com/api/projects/status/sc7937we6gb0mwoc?svg=true)
+
+Command line utility that retries  `npm install` when NPM fails with `npm ERR! cb() never called` or `npm ERR! errno ECONNRESET`.
 
 This happens sporadically and has been reported many times:
 
 -  https://github.com/meteor/meteor/issues/1190
 -  https://github.com/isaacs/npm/issues/2907
 -  https://github.com/isaacs/npm/issues/3269
+-  https://github.com/npm/npm/issues?utf8=%E2%9C%93&q=ECONNRESET+
 
 and still fails.
 
