@@ -11,12 +11,10 @@ module.exports = function (command, args, options, callback) {
 
     var attempt = exec(runCmd, function (err, stdout, stderr) {
       matchers = [/npm ERR\! cb\(\) never called\!/ig, /npm ERR\! errno ECONNRESET/ig];
-      if (
-          stdout.match(matchers[0]) ||
-          stderr.match(matchers[0]) ||
-          stdout.match(matchers[1]) ||
-          stderr.match(matchers[1])
-      ) {
+      var match = matchers.some(function (matcher) {
+          return stdout.match(matcher) || stderr.match(matcher);
+      });
+      if (match) {
         if (times >= options.attempts) {
           return callback(new Error('too many attempts'));
         }
