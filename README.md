@@ -2,8 +2,11 @@
 
 ![Build status](https://ci.appveyor.com/api/projects/status/sc7937we6gb0mwoc?svg=true)
 
-Command line utility that retries  `npm install` when NPM fails with flaky errors like `npm ERR! cb() never called`,
-`npm ERR! errno ECONNRESET` or `npm ERR! shasum check failed`.
+Command line utility that retries  `npm install` when NPM fails with flaky errors: 
+* `npm ERR! cb() never called`,
+* `npm ERR! errno ECONNRESET`,
+* `npm ERR! shasum check failed`,
+* `npm ERR! code EINTEGRITY`
 
 This happens sporadically and has been reported many times:
 
