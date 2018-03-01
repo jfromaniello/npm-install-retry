@@ -2,7 +2,11 @@
 
 ![Build status](https://ci.appveyor.com/api/projects/status/sc7937we6gb0mwoc?svg=true)
 
-Command line utility that retries  `npm install` when NPM fails with `npm ERR! cb() never called` or `npm ERR! errno ECONNRESET`.
+Command line utility that retries  `npm install` when NPM fails with flaky errors: 
+* `npm ERR! cb() never called`,
+* `npm ERR! errno ECONNRESET`,
+* `npm ERR! shasum check failed`,
+* `npm ERR! code EINTEGRITY`
 
 This happens sporadically and has been reported many times:
 
@@ -10,6 +14,7 @@ This happens sporadically and has been reported many times:
 -  https://github.com/isaacs/npm/issues/2907
 -  https://github.com/isaacs/npm/issues/3269
 -  https://github.com/npm/npm/issues?utf8=%E2%9C%93&q=ECONNRESET+
+-  https://github.com/npm/npm/issues/2701
 
 and still fails.
 

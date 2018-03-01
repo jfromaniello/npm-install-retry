@@ -30,6 +30,8 @@ describe('npm-install-retry', function () {
 
   testRetries(cbErrorCommand);
   testRetries('echo npm ERR! errno ECONNRESET');
+  testRetries('echo npm ERR! shasum check failed');
+  testRetries('echo npm ERR! code EINTEGRITY');
 
   it('should fail if it fail all attempts', function (done) {
     npm_install_retry(cbErrorCommand, '', { wait: 0, attempts: 10 }, function (err, result) {
