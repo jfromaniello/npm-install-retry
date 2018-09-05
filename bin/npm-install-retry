@@ -10,7 +10,7 @@ program
   .version(require(__dirname + '/../package.json').version)
   .option('-a, --attempts [10]', 'Number of attempts before fail [10]', 10)
   .option('-w, --wait [500]', 'Milliseconds to wait between tries [10]', 10)
-  .option('-c, --configFile <path>', 'Custom config JSON for npm-install-retry.')
+  .option('-c, --configFile <path>', 'Custom config JSON for npm-install-retry')
   .parse(retryargs);
 
 run('npm install', npmargs, {wait: program.wait, attempts: program.attempts, configFile: program.configFile}, function (err, res) {
