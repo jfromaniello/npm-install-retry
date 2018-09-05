@@ -1,5 +1,20 @@
 require('colors');
 var exec    = require('child_process').exec;
+const os = require('os');
+const path = require('path');
+var matchers;
+
+var loadConfig = configFile => {
+  if (configFile) {
+    matchers = require(configFile).matchers;
+  } else {
+    try {
+      matchers = require(`${os.homedir()}/.npmretry.json`).matchers;
+    } catch (err) {
+      matchers = require(path.join(__dirname, '/.npmretry.json')).matchers;
+    }
+  }
+};
 
 module.exports = function (command, args, options, callback) {
   var times = 1;
@@ -10,10 +25,9 @@ module.exports = function (command, args, options, callback) {
     process.env.npm_config_color = 0;
 
     var attempt = exec(runCmd, function (err, stdout, stderr) {
-      matchers = [/npm ERR\! cb\(\) never called\!/ig, /npm ERR\! errno ECONNRESET/ig,
-          /npm ERR\! shasum check failed/ig, /npm ERR\! code EINTEGRITY/ig];
       var match = matchers.some(function (matcher) {
-          return stdout.match(matcher) || stderr.match(matcher);
+        const regex = new RegExp(matcher, 'ig');
+        return stdout.match(regex) || stderr.match(regex);
       });
       if (match) {
         if (times >= options.attempts) {
@@ -28,5 +42,6 @@ module.exports = function (command, args, options, callback) {
     attempt.stdout.pipe(process.stdout);
     attempt.stderr.pipe(process.stderr);
   }
+  loadConfig(options.configFile);
   run();
 };

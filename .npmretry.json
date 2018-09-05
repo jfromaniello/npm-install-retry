@@ -1,0 +1,4 @@
+{
+  "matchers": ["npm ERR\\! cb\\(\\) never called\\!", "npm ERR\\! errno ECONNRESET",
+               "npm ERR\\! shasum check failed", "npm ERR\\! code EINTEGRITY"]
+}
